@@ -1,17 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
  <head>
   <meta charset="UTF-8" />
   <title>Index</title>
-  <style>
-   article, aside, details, figcaption, figure, footer,header,
-   hgroup, menu, nav, section { display: block; }
-  </style>
+ <link rel="stylesheet" href="{% static 'food/style.css' %}">
  </head>
  <body>
- <p>Привет, мир</p>
+ <p>Список продуктов:</p>
  {% for item in item_list %}
-  <a href="/food/{{ item.id }}"><p>{{ item.item_name }}</p></a>
+  <a href="{% url 'food:detail' item.id %}"><p>{{ item.item_name }}</p></a>
  {% endfor %}
  </body>
 </html>
