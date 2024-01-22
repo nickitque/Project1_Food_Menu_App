@@ -1,15 +1,27 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 <html>
  <head>
   <meta charset="UTF-8" />
   <title>Index</title>
-  <style>
-   article, aside, details, figcaption, figure, footer,header,
-   hgroup, menu, nav, section { display: block; }
-  </style>
  </head>
  <body>
- <h1> {{item.item_name }}</h1>
- <p> {{item.item_descr }}</p>
+ {% block body %}
+ <div class="container">
+  <div class="row">
+   <div class="col-md-6">
+      <img src="{{ item.item_img }}" height="400px">
+   </div>
+      <div class="col-md-6">
+       <h1> {{item.item_name }}</h1>
+       <h5> {{item.item_descr }}</h5>
+       <h6> ${{item.price }}</h6>
+
+   </div>
+  </div>
+ </div>
+
+
+ {% endblock %}
  </body>
 </html>

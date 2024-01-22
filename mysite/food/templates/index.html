@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
 <html>
  <head>
   <meta charset="UTF-8" />
   <title>Index</title>
- <link rel="stylesheet" href="{% static 'food/style.css' %}">
- </head>
+  </head>
  <body>
- <p>Список продуктов:</p>
+
+{% block body %}
+
  {% for item in item_list %}
-  <a href="{% url 'food:detail' item.id %}"><p>{{ item.item_name }}</p></a>
+<div class="row">
+  <div class="col-md-3 offset-md-2">
+         <img src="{{ item.item_img }}" height="160px">
+  </div>
+  <div class="col-md-4">
+
+    <a href="{% url 'food:detail' item.id %}"><h3>{{ item.item_name }}</h3></a>
+    <h5>{{ item.item_descr }}</h5>
+    <h6>${{ item.price }}</h6>
+  </div>
+  <div class="col-md-2">
+   <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+  </div>
+</div>
  {% endfor %}
+ {% endblock %}
+
  </body>
 </html>
