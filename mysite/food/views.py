@@ -26,6 +26,7 @@ def detail(request, pk):
 
     return render(request, 'detail.html', context)
 
+
 def create_item(request):
     form = ItemForm(request.POST or None)
 
@@ -35,6 +36,7 @@ def create_item(request):
 
     return render(request, 'item_form.html', {'form': form})
 
+
 def edit(request, pk):
     item = Item.objects.get(pk=pk)
     form = ItemForm(request.POST or None, instance=item)
@@ -43,4 +45,13 @@ def edit(request, pk):
         form.save()
         return redirect('food:index')
 
-    return render(request, 'item_form.html', {'form':form, 'item': item})
+    return render(request, 'item_form.html', {'form': form, 'item': item})
+
+
+def delete(request, pk):
+    item = Item.objects.get(pk=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('food:index')
+
+    return render(request, 'item_delete.html', {'item': item})
