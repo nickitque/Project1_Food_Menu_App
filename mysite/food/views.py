@@ -33,5 +33,14 @@ def create_item(request):
         form.save()
         return redirect('food:index')
 
-    return render(request, 'item_form.html', {'form':form})
+    return render(request, 'item_form.html', {'form': form})
 
+def edit(request, pk):
+    item = Item.objects.get(pk=pk)
+    form = ItemForm(request.POST or None, instance=item)
+
+    if form.is_valid():
+        form.save()
+        return redirect('food:index')
+
+    return render(request, 'item_form.html', {'form':form, 'item': item})
