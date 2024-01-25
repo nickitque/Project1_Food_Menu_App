@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
  {% block body %}
 <h1>{{ user.username }}</h1>
-<img src="{{ user.profile.image.url }}">
+<img width="100px" src="{{ user.profile.image.url }}">
 <p>{{ user.profile.phone_num}}</p>
 <p>{{ user.profile.image.url }}</p>
 {% endblock %}
