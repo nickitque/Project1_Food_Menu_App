@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Item
 from .forms import ItemForm
-from django.template import loader
+from django.views.generic.list import ListView
 
 
 def index(request):
@@ -14,8 +14,11 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def item(request):
-    return HttpResponse('Item')
+class IndexClassView(ListView):
+    """Class based view instead of old view."""
+    model = Item
+    template_name = 'index.html'
+    context_object_name = 'item_list'
 
 
 def detail(request, pk):
