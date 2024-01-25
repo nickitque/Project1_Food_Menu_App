@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Item
 from .forms import ItemForm
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 def index(request):
@@ -29,6 +30,10 @@ def detail(request, pk):
 
     return render(request, 'detail.html', context)
 
+
+class FoodDetail(DetailView):
+    model = Item
+    template_name = 'detail.html'
 
 def create_item(request):
     form = ItemForm(request.POST or None)
