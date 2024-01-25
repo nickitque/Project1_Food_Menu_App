@@ -9,8 +9,12 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Welcome, {username}, your account is created!')
-            return redirect('food:index')
+            return redirect('users:login')
 
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+def profile_page(request):
+    return render(request, 'profile.html')

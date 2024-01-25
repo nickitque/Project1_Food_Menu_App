@@ -12,10 +12,19 @@
  <nav class="navbar navbar-dark bg-dark">
    <a href="/food/" class="navbar-brand">Food app</a>
   <div class="navbar">
-      <a class="nav-item nav-link" href="#">Add Item</a>
-      <a class="nav-item nav-link" href="#">Delete</a>
-      <a class="nav-item nav-link" href="#">View item</a>
+      {% if user.is_authenticated %}
+      <a class="nav-item" href="{% url 'food:create_item' %}">Add Item</a>
+      <a class="nav-item" href="#">Delete</a>
+      <a class="nav-item" href="#">View item</a>
+      <a class="nav-item" href="{% url 'users:profile' %}">Profile</a>
 
+      <form method="post" action="{% url 'users:logout' %}">
+    {% csrf_token %}
+    <button type="submit">logout</button>
+</form>
+        {% else %}
+            <a class="nav-item" href="{% url 'users:login' %}">Login</a>
+      {% endif %}
   </div>
  </nav>
  {% if messages %}
